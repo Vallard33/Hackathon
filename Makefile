@@ -1,13 +1,10 @@
 all: main
 
-main: main.o
-	g++ -o main main.o
+main: main.cpp Entity.o TileElement.o Game.o
+	g++ -o main Entity.o TileElement.o Game.o main.cpp 
 
-main.o: main.cpp Entity.o TileElement.o Game.o
-	g++ -c main.cpp Entity.o TileElement.o Game.o
-
-Game.o: Game.cpp Entity.o TileElement.o
-	g++ -c Game.cpp Entity.o TileElement.o
+Game.o: Game.cpp
+	g++ -c Game.cpp
 
 Entity.o: Entity.cpp
 	g++ -c Entity.cpp
