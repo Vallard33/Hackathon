@@ -17,19 +17,19 @@ public :
 
 class Terrain: public TileElement{
 };
-class Wall: Terrain{
+class Wall: public Terrain{
     Wall();
 };
-class Empty: Terrain{
+class Empty: public Terrain{
     Empty ();
 };
-class Door: Terrain{
+class Door: public Terrain{
     Door ();
 };
-class Corridor: Terrain{
+class Corridor: public Terrain{
     Corridor ();
 };
-class Stairs: Terrain{
+class Stairs: public Terrain{
     Stairs ();
 };
 
@@ -65,21 +65,7 @@ class Food : public Object{
     int staminaPoints;
     Food(string s, int n);
 };
-class Wall: Terrain{
-    Wall();
-};
-class Empty: Terrain{
-    Empty ();
-};
-class Door: Terrain{
-    Door ();
-};
-class Corridor: Terrain{
-    Corridor ();
-};
-class Stairs: Terrain{
-    Stairs ();
-};
+
 
 
 
