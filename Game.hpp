@@ -18,6 +18,7 @@ class Game{
         ~Game();
         void update();
         void draw();
+        void print_inventory();
 };
 
 #endif

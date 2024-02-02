@@ -12,6 +12,8 @@ Game::Game(){
     this->boardWidth = 10;
 
     this->player = Player(1, 1, 100, 100, 100, 100);
+    this->player.currentArmor = new Armor ("Casque", 10);
+    this->player.currentWeapon = new Weapon ("Epee", 15);
     board = createMap(boardHeight,boardWidth );
 /*
     board = new TileElement*[this->boardHeight];
@@ -49,10 +51,25 @@ void Game::draw(){
         }
         std::cout << std::endl;
     }
+
+    //Affichage des PV, OR, nourriture etc...
+    std::cout << "HP : " << this->player.health << "/" << this->player.healthLimit << endl;
+    std::cout << "Strength : " << this->player.strength << endl;
+    std::cout << "Stamina : " << this->player.stamina << endl;
+}
+
+void Game::print_inventory(){
+    std::cout << "Current weapon :" << (this->player).currentWeapon->printElement() << ", damage : " << (this->player).currentWeapon->damage << endl;
+    std::cout << "Current armor :" << (this->player).currentArmor->printElement() << ", protection : " << (this->player).currentArmor->protection << endl;
+    std::cout << "Inventory :" << endl;
+    for (int i = 0; i < this->player.objectsNumber; i++){
+        std::cout << i+1 << this->player.inventory[i]->printElement() << endl;
+    }
 }
 
 void Game::update(){
     draw();
+    print_inventory();
     char key;
     if (keyEventBlocking()){
         std::cin >> key;
@@ -78,7 +95,7 @@ void Game::update(){
                     this->player.x++;
                 }
             }
+            
         }
-        draw();
     }
 }
