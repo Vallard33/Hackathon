@@ -12,6 +12,9 @@ Game::Game(){
     board = new TileElement*[this->boardHeight];
     for (int i = 0; i < boardHeight; i++){
         board[i] = new TileElement[this->boardWidth];
+        for (int j = 0; j < this->boardWidth; j++){
+            this->board[i][j] = Empty();
+        }
     }
 }
 

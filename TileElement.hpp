@@ -21,7 +21,8 @@ class Wall: public Terrain{
     Wall();
 };
 class Empty: public Terrain{
-    Empty ();
+    public:
+        Empty ();
 };
 class Door: public Terrain{
     Door ();

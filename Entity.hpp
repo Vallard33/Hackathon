@@ -3,11 +3,11 @@
 
 #include "TileElement.hpp"
 
-const int INVENTORY_CAPACITY;
+const int INVENTORY_CAPACITY = 10;
 
 class Entity
 {
-protected:
+public:
     int x;
     int y;
     int healthLimit;
@@ -15,6 +15,7 @@ protected:
     int strength;
 
 public:
+    Entity(){};
     Entity(int initialX, int initialY, int initialHealthLimit, int initialHealth, int initialStrength)
         : x(initialX), y(initialY), healthLimit(initialHealthLimit), health(initialHealth), strength(initialStrength) {}
 
@@ -31,6 +32,7 @@ class Player : public Entity
     int stamina; // Low if the player is exhausted, he has to eat in this case
 
 public :
+    Player(){};
     Player(int posx, int posy, int healthLimitPlayer, int healthPlayer, int strengthPlayer, int staminaPlayer)
         : Entity(posx, posy, healthLimitPlayer, healthPlayer, strengthPlayer), objectsNumber(0), currentWeapon(nullptr), currentArmor(nullptr), stamina(staminaPlayer)
     {
