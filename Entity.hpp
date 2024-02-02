@@ -15,7 +15,7 @@ public:
     int strength;
 
 public:
-    Entity();
+    Entity(){};
     Entity(int initialX, int initialY, int initialHealthLimit, int initialHealth, int initialStrength)
         : x(initialX), y(initialY), healthLimit(initialHealthLimit), health(initialHealth), strength(initialStrength) {}
 
@@ -25,14 +25,15 @@ public:
 
 class Player : public Entity
 {
+public:
     int objectsNumber;
     Object** inventory;
-    Object* currentWeapon; // TODO : Replace Object by good type // None if no weapon
-    Object* currentArmor; // TODO : Replace Object by good type // None if no armor
+    Weapon* currentWeapon; // TODO : Replace Object by good type // None if no weapon
+    Armor* currentArmor; // TODO : Replace Object by good type // None if no armor
     int stamina; // Low if the player is exhausted, he has to eat in this case
 
 public :
-    Player();
+    Player(){};
     Player(int posx, int posy, int healthLimitPlayer, int healthPlayer, int strengthPlayer, int staminaPlayer)
         : Entity(posx, posy, healthLimitPlayer, healthPlayer, strengthPlayer), objectsNumber(0), currentWeapon(nullptr), currentArmor(nullptr), stamina(staminaPlayer)
     {
@@ -42,12 +43,15 @@ public :
             inventory[i] = nullptr; // Initialize each element to nullptr
         }
     }
-    ~Player();
+    ~Player()
+    {
+        delete[] inventory;
+    };
 };
 
 class Monster : public Entity
 {
-    Monster();
+    Monster(){};
     Monster(int posx , int posy , int healthLimitMonster , int healthMonster , int strengthMonster)
         : Entity(posx, posy, healthLimitMonster, healthMonster, strengthMonster) {}
 };
