@@ -15,7 +15,7 @@ public :
     ~TileElement(){};
 };
 
-class Terrain: TileElement{
+class Terrain: public TileElement{
 };
 class Wall: Terrain{
     Wall();
@@ -79,8 +79,6 @@ class Corridor: Terrain{
 };
 class Stairs: Terrain{
     Stairs ();
-};
-class Object: public TileElement{
 };
 
 
