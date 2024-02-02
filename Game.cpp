@@ -31,6 +31,7 @@ Game::Game(){
             this->explored[i][j] = false;
         }
     }
+};
 /*
     board = new TileElement*[this->boardHeight];
     for (int i = 0; i < boardHeight; i++){
@@ -60,10 +61,21 @@ void Game::draw(){
                 std::cout << '@';
             } 
             else if (monsters[i][j] != nullptr){
-                std::cout<<'M';
+                if (this->explored[i][j]){
+                    std::cout << 'M';
+                }
+                else{
+                    std::cout<<' ';
+                }
             }
             else {
-                std::cout << this->board[i][j].printElement();
+                if (this->explored[i][j]){
+                    std::cout << this->board[i][j].printElement();
+                }
+                else{
+                    std::cout<<' ';
+                }
+                
             }
         }
         std::cout << std::endl;
@@ -130,23 +142,19 @@ void Game::update(){
             monsters[this->player.x-1][this->player.y]->hit(&this->player);
             (&this->player)->hit(monsters[this->player.x-1][this->player.y]);
         }
-            // updating explored zone
-            int radius = 2;
-            for (int dx = -radius; dx <= radius; dx++){
-                for (int dy = -radius; dy <= radius; dy++){
-                    int x2, y2;
-                    x2 = this->player.x + dx;
-                    y2 = this->player.y + dy;
-                    if (0 <= x2 && x2 < this->boardWidth
-                        && 0 <= y2 && y2 < this->boardHeight){
-                        this->explored[y2][x2] = true;
-                    }
+        // updating explored zone
+        int radius = 2;
+        for (int dx = -radius; dx <= radius; dx++){
+            for (int dy = -radius; dy <= radius; dy++){
+                int x2, y2;
+                x2 = this->player.x + dx;
+                y2 = this->player.y + dy;
+                if (0 <= x2 && x2 < this->boardWidth
+                    && 0 <= y2 && y2 < this->boardHeight){
+                    this->explored[y2][x2] = true;
                 }
             }
-            
-            
         }
-
-
+             
+        }
     }
-}
