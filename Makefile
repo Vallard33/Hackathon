@@ -2,8 +2,8 @@ CFLAGS = -g -Wall -Wextra -pedantic -fsanitize=address
 
 all: main
 
-main: main.cpp Entity.o TileElement.o Game.o keyboard.o
-	g++ -o main Entity.o TileElement.o Game.o main.cpp $(CFLAGS)
+main: main.cpp Entity.o TileElement.o keyboard.o Game.o
+	g++ -o main Entity.o TileElement.o keyboard.o Game.o main.cpp $(CFLAGS)
 
 Game.o: Game.cpp
 	g++ -c Game.cpp $(CFLAGS)
