@@ -1,8 +1,8 @@
-#include "TileElement.hpp"
-#include "Entity.hpp"
 #include <fstream>
 #include <iostream>
 #include <map>
+#include "TileElement.hpp"
+
 
 using namespace std;
 
@@ -19,24 +19,23 @@ TileElement* createLigne (string contenu, int colonnes) {
         ligne[i] = dico[c];
     };
     return ligne;
-}
+};
 
-TileElement** createMap () {
-    int colonnes = 10;
-    int lignes = 10;
+TileElement** createMap (int lignes, int colonnes) {
     TileElement** map = new TileElement*[lignes];
     ifstream fichier("map.txt", ios::in);
     if(fichier) { //Pour vérifier si l'ouverture à fonctionner
         for (int i = 0; i < lignes; i++){
-        string contenu;
-        getline(fichier, contenu);
-        map[i] = createLigne (contenu, colonnes);
-        return map;
-        fichier.close();
+            string contenu;
+            getline(fichier, contenu);
+            map[i] = createLigne (contenu, colonnes);
         }
+        fichier.close();
+        return map;
     }
         else {
                 cerr << "Impossible d'ouvrir le fichier !" << endl;
+                return 0;
     } 
-}
+};
 
