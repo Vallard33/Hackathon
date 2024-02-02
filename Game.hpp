@@ -11,6 +11,7 @@ class Game{
         int boardWidth;
         int boardHeight;
         TileElement** board;
+        bool** explored;
         std::vector<Monster> monsters;
         Player player;
 
