@@ -12,7 +12,7 @@ Game::Game(){
     this->boardWidth = 60;
 
     this->player = Player(1, 1, 100, 100, 5, 100);
-    this->player.currentArmor = new Armor ("Casque", 10);
+    this->player.currentArmor = new Armor ("Casque", 1);
     this->player.currentWeapon = new Weapon ("Epee", 15);
     board = createMap(boardHeight,boardWidth );
     monsters = new Monster**[boardHeight];
@@ -126,21 +126,21 @@ void Game::update(){
             }
             
         }
-        if (monsters[this->player.x][this->player.y+1] != nullptr){
-            monsters[this->player.x][this->player.y+1]->hit(&this->player);
-            (&this->player)->hit(monsters[this->player.x][this->player.y+1]);
+        if (monsters[this->player.y][this->player.x+1] != nullptr){
+            monsters[this->player.y][this->player.x+1]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.y][this->player.x+1]);
         }
-        if (monsters[this->player.x][this->player.y-1] != nullptr){
-            monsters[this->player.x][this->player.y-1]->hit(&this->player);
-            (&this->player)->hit(monsters[this->player.x][this->player.y-1]);
+        if (monsters[this->player.y][this->player.x-1] != nullptr){
+            monsters[this->player.y][this->player.x-1]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.y][this->player.x-1]);
         }
-        if (monsters[this->player.x+1][this->player.y] != nullptr){
-            monsters[this->player.x+1][this->player.y]->hit(&this->player);
-            (&this->player)->hit(monsters[this->player.x+1][this->player.y]);
+        if (monsters[this->player.y+1][this->player.x] != nullptr){
+            monsters[this->player.y+1][this->player.x]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.y+1][this->player.x]);
         }
-        if (monsters[this->player.x-1][this->player.y] != nullptr){
-            monsters[this->player.x-1][this->player.y]->hit(&this->player);
-            (&this->player)->hit(monsters[this->player.x-1][this->player.y]);
+        if (monsters[this->player.y-1][this->player.x] != nullptr){
+            monsters[this->player.y-1][this->player.x]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.y-1][this->player.x]);
         }
         // updating explored zone
         int radius = 2;
