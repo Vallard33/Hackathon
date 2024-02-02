@@ -9,6 +9,9 @@
 Game::Game(){
     this->boardHeight = 40;
     this->boardWidth = 80;
+
+    this->player = Player(40, 20, 100, 100, 100, 100);
+
     board = new TileElement*[this->boardHeight];
     for (int i = 0; i < boardHeight; i++){
         board[i] = new TileElement[this->boardWidth];
