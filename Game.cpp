@@ -8,26 +8,20 @@
 
 
 Game::Game(){
-    this->boardHeight = 10;
-    this->boardWidth = 10;
+    this->boardHeight = 15;
+    this->boardWidth = 60;
 
     this->player = Player(1, 1, 100, 100, 100, 100);
     this->player.currentArmor = new Armor ("Casque", 10);
     this->player.currentWeapon = new Weapon ("Epee", 15);
-    board = createMap(boardHeight,boardWidth );
-/*
-    board = new TileElement*[this->boardHeight];
-    for (int i = 0; i < boardHeight; i++){
-        board[i] = new TileElement[this->boardWidth];
+    this->board = createMap(this->boardHeight,this->boardWidth );
+    this->explored = new bool*[this->boardHeight];
+    for (int i = 0; i < this->boardHeight;i++){
+        this->explored[i] = new bool[this->boardWidth];
         for (int j = 0; j < this->boardWidth; j++){
-            this->board[i][j] = Empty();
+            this->explored[i][j] = false;
         }
-    
     }
-    for (int i  = 0; i < boardHeight; i++){
-        this->board[i][20] = Wall();
-    }
-*/
 }
 
 Game::~Game(){
@@ -44,9 +38,11 @@ void Game::draw(){
         for (int j = 0; j < this->boardWidth; j++){
             // Sur la case du joueur on print @ et non le terrain
             if (i == this->player.y && j == this->player.x){
-                std::cout << '@';
+                std::cout << "\e[1;31m@\e[0m";
             } else {
-                std::cout << this->board[i][j].printElement();
+                if (this->explored[i][j]){
+                    std::cout << this->board[i][j].printElement();
+                }
             }
         }
         std::cout << std::endl;
@@ -95,7 +91,18 @@ void Game::update(){
                     this->player.x++;
                 }
             }
+            // updating explored zone
+            for (int dx = -3; dx < 4; dx++){
+                for (int dy = -3; dy < 4; dy++){
+                    if (0 <= this->player.x < this->boardWidth
+                        && 0 <= this->player.y < this->boardHeight){
+                        this->explored[y+dy][x+dx] = true;
+                    }
+                }
+            }
             
         }
+
+
     }
 }
