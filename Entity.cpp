@@ -32,7 +32,7 @@ int Player::damages()
     return currentWeapon->damage + strength;
 }
 
-void Player::hit(Monster* enemy)
+void Player::hit(Entity* enemy)
 {
     enemy->updateHeal(damages());
 }

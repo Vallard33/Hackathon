@@ -51,7 +51,7 @@ public:
     };
 
     int damages();
-    void hit(Monster* ennemy);
+    void hit(Entity* ennemy);
 };
 
 class Monster : public Entity
