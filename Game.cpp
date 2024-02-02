@@ -22,7 +22,12 @@ Game::Game(){
             monsters[i][j] = nullptr;
         }
     }
-    monsters[3][3] = new Monster (10, 10 , 30, 30, 5);
+    monsters[3][5] = new Monster (10, 10 , 30, 30, 5);
+    monsters[1][19] = new Monster (10, 10 , 30, 30, 5);
+    monsters[7][11] = new Monster (10, 10 , 30, 30, 5);
+    monsters[8][18] = new Monster (10, 10 , 30, 30, 5);
+    monsters[9][45] = new Monster (10, 10 , 30, 30, 5);
+    monsters[14][47] = new Monster (10, 10 , 30, 30, 5);
 
     this->explored = new bool*[this->boardHeight];
     for (int i = 0; i < this->boardHeight;i++){
