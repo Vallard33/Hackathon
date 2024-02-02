@@ -22,7 +22,7 @@ public:
     void updateHeal(int damage);
 
     virtual int damages();
-    virtual void hit(Entity* ennemy){};
+    virtual void hit(){};
 };
 
 
