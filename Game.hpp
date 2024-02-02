@@ -3,18 +3,20 @@
 
 #include <vector>
 #include "TileElement.hpp"
+#include "Entity.hpp"
 
 class Game{
-    int boardWidth;
-    int boardHeight;
-    TileElement** board;
-    vector<Monster> monsters;
-    Player player;
+    public:
+        int boardWidth;
+        int boardHeight;
+        TileElement** board;
+        std::vector<Monster> monsters;
+        Player player;
 
-    Game();
-    ~Game();
-    void update();
-    void draw();
+        Game();
+        ~Game();
+        void update();
+        void draw();
 };
 
 #endif

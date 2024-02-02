@@ -23,12 +23,12 @@ Game::~Game(){
 }
 
 void Game::draw(){
-    clrscr(); // nettoyage du terminal
+    // std::system("clear"); // nettoyage du terminal
     // On print les elements un par un 
     for (int i = 0; i < this->boardHeight; i++){
         for (int j = 0; j < this->boardWidth; j++){
             // Sur la case du joueur on print @ et non le terrain
-            if (i == this->player.y && j = this->player.x){
+            if (i == this->player.y && j == this->player.x){
                 std::cout << '@';
             } else {
                 std::cout << this->board[i][j].printElement();
