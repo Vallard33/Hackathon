@@ -75,22 +75,22 @@ void Game::update(){
         std::cin >> key;
         if (key == 'z' || key == 'q' || key == 's' || key == 'd'){
             cout << "moving hero" << endl;
-            if (key == 'z'){
+            if (key == 'z' && this->player.y > 0){
                 if (board[this->player.y - 1][this->player.x].printElement() != '|'){
                     this->player.y--;
                 }
             }
-            else if (key == 's'){
+            else if (key == 's' && this->player.y < this->boardHeight-1){
                 if (board[this->player.y + 1][this->player.x].printElement() != '|'){
                     this->player.y++;
                 }
             }
-            else if (key == 'q'){
+            else if (key == 'q' && this->player.x > 0){
                 if (board[this->player.y][this->player.x - 1].printElement() != '|'){
                     this->player.x--;
                 }
             }
-            else if (key == 'd'){
+            else if (key == 'd' && this->player.x < this->boardWidth-1){
                 if (board[this->player.y][this->player.x + 1].printElement() != '|'){
                     this->player.x++;
                 }
