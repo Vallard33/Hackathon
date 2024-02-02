@@ -11,8 +11,8 @@ class Game{
         int boardWidth;
         int boardHeight;
         TileElement** board;
-        std::vector<Monster> monsters;
         Player player;
+        Monster*** monsters;
 
         Game();
         ~Game();

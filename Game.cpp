@@ -8,18 +8,18 @@
 
 
 Game::Game(){
-    this->boardHeight = 10;
-    this->boardWidth = 10;
+    this->boardHeight = 15;
+    this->boardWidth = 60;
 
-    this->player = Player(1, 1, 100, 100, 100, 100);
+    this->player = Player(1, 1, 100, 100, 5, 100);
     this->player.currentArmor = new Armor ("Casque", 10);
     this->player.currentWeapon = new Weapon ("Epee", 15);
     board = createMap(boardHeight,boardWidth );
     monsters = new Monster**[boardHeight];
     for (int i = 0; i < boardHeight; i++){
-        board[i] = new Monster*[boardWidth];
+        monsters[i] = new Monster*[boardWidth];
         for (int j = 0; j < boardWidth; j++){
-            board[i][j] = nullptr;
+            monsters[i][j] = nullptr;
         }
     }
     monsters[3][3] = new Monster (10, 10 , 30, 30, 5);
@@ -55,7 +55,7 @@ void Game::draw(){
                 std::cout << '@';
             } 
             else if (monsters[i][j] != nullptr){
-                std::cout<<'M'<<endl;
+                std::cout<<'M';
             }
             else {
                 std::cout << this->board[i][j].printElement();
@@ -108,6 +108,22 @@ void Game::update(){
                 }
             }
             
+        }
+        if (monsters[this->player.x][this->player.y+1] != nullptr){
+            monsters[this->player.x][this->player.y+1]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.x][this->player.y+1]);
+        }
+        if (monsters[this->player.x][this->player.y-1] != nullptr){
+            monsters[this->player.x][this->player.y-1]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.x][this->player.y-1]);
+        }
+        if (monsters[this->player.x+1][this->player.y] != nullptr){
+            monsters[this->player.x+1][this->player.y]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.x+1][this->player.y]);
+        }
+        if (monsters[this->player.x-1][this->player.y] != nullptr){
+            monsters[this->player.x-1][this->player.y]->hit(&this->player);
+            (&this->player)->hit(monsters[this->player.x-1][this->player.y]);
         }
     }
 }
