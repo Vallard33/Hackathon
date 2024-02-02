@@ -63,7 +63,7 @@ void Game::draw(){
         for (int j = 0; j < this->boardWidth; j++){
             // Sur la case du joueur on print @ et non le terrain
             if (i == this->player.y && j == this->player.x){
-                std::cout << '@';
+                std::cout << "\033[91m@\033[0m";
             } 
             else if (monsters[i][j] != nullptr){
                 if (this->explored[i][j]){
