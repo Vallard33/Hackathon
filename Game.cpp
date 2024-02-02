@@ -17,6 +17,10 @@ Game::Game(){
         for (int j = 0; j < this->boardWidth; j++){
             this->board[i][j] = Empty();
         }
+    
+    }
+    for (int i  = 0; i < boardHeight; i++){
+        this->board[i][20] = Wall();
     }
 }
 
@@ -51,16 +55,24 @@ void Game::update(){
         if (key == 'z' || key == 'q' || key == 's' || key == 'd'){
             cout << "moving hero" << endl;
             if (key == 'z'){
-                this->player.y--;
+                if (board[this->player.y - 1][this->player.x].printElement() != '|'){
+                    this->player.y--;
+                }
             }
             else if (key == 's'){
-                this->player.y++;
+                if (board[this->player.y + 1][this->player.x].printElement() != '|'){
+                    this->player.y++;
+                }
             }
             else if (key == 'q'){
-                this->player.x--;
+                if (board[this->player.y][this->player.x - 1].printElement() != '|'){
+                    this->player.x--;
+                }
             }
             else if (key == 'd'){
-                this->player.x++;
+                if (board[this->player.y][this->player.x + 1].printElement() != '|'){
+                    this->player.x++;
+                }
             }
         }
         draw();
