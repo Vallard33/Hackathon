@@ -23,26 +23,31 @@ Game::Game(){
         }
     }
     monsters[3][3] = new Monster (10, 10 , 30, 30, 5);
+
+    this->explored = new bool*[this->boardHeight];
+    for (int i = 0; i < this->boardHeight;i++){
+        this->explored[i] = new bool[this->boardWidth];
+        for (int j = 0; j < this->boardWidth; j++){
+            this->explored[i][j] = false;
+        }
+    }
 /*
     board = new TileElement*[this->boardHeight];
     for (int i = 0; i < boardHeight; i++){
         board[i] = new TileElement[this->boardWidth];
         for (int j = 0; j < this->boardWidth; j++){
-            this->board[i][j] = Empty();
+            this->explored[i][j] = false;
         }
-    
     }
-    for (int i  = 0; i < boardHeight; i++){
-        this->board[i][20] = Wall();
-    }
-*/
-}
+}*/
 
 Game::~Game(){
     for (int i = 0; i < boardHeight; i++){
         delete[] this->board[i];
+        delete[] this->explored[i];
     }
     delete[] this->board;
+    delete[] this->explored;
 }
 
 void Game::draw(){
@@ -125,5 +130,23 @@ void Game::update(){
             monsters[this->player.x-1][this->player.y]->hit(&this->player);
             (&this->player)->hit(monsters[this->player.x-1][this->player.y]);
         }
+            // updating explored zone
+            int radius = 2;
+            for (int dx = -radius; dx <= radius; dx++){
+                for (int dy = -radius; dy <= radius; dy++){
+                    int x2, y2;
+                    x2 = this->player.x + dx;
+                    y2 = this->player.y + dy;
+                    if (0 <= x2 && x2 < this->boardWidth
+                        && 0 <= y2 && y2 < this->boardHeight){
+                        this->explored[y2][x2] = true;
+                    }
+                }
+            }
+            
+            
+        }
+
+
     }
 }
