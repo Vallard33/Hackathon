@@ -4,6 +4,7 @@
 #include <vector>
 #include "TileElement.hpp"
 #include "Entity.hpp"
+#include "beginning.hpp"
 
 class Game{
     public:

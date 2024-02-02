@@ -1,19 +1,19 @@
 #include <cstdlib>
 #include <iostream>
-
 #include "Game.hpp"
 #include "TileElement.hpp"
 #include "Entity.hpp"
+#include "beginning.hpp"
 #include "keyboard.hpp"
 
 
 Game::Game(){
-    this->player = Player(40,20,0,0,0,0);
-    this->boardHeight = 40;
-    this->boardWidth = 80;
+    this->boardHeight = 10;
+    this->boardWidth = 10;
 
-    this->player = Player(40, 20, 100, 100, 100, 100);
-
+    this->player = Player(1, 1, 100, 100, 100, 100);
+    board = createMap(boardHeight,boardWidth );
+/*
     board = new TileElement*[this->boardHeight];
     for (int i = 0; i < boardHeight; i++){
         board[i] = new TileElement[this->boardWidth];
@@ -25,6 +25,7 @@ Game::Game(){
     for (int i  = 0; i < boardHeight; i++){
         this->board[i][20] = Wall();
     }
+*/
 }
 
 Game::~Game(){
