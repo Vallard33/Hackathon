@@ -1,15 +1,15 @@
-#include "TileElement.hpp";
-#include "Entity.hpp";
-#include <fstream>;
-#include <iostream>;
-#include <map>;
+#include "TileElement.hpp"
+#include "Entity.hpp"
+#include <fstream>
+#include <iostream>
+#include <map>
 
 using namespace std;
 
 TileElement* createLigne (string contenu, int colonnes) {
     std::map<char, TileElement> dico;
     TileElement* ligne = new TileElement[colonnes];
-    dico["."]=Empty();
+    dico['.']=Empty();
     dico['|']=Wall();
     dico['+']=Door();
     dico['#']=Corridor();
