@@ -27,8 +27,10 @@ Game::Game(){
 Game::~Game(){
     for (int i = 0; i < boardHeight; i++){
         delete[] this->board[i];
+        delete[] this->explored[i];
     }
     delete[] this->board;
+    delete[] this->explored;
 }
 
 void Game::draw(){
@@ -42,6 +44,8 @@ void Game::draw(){
             } else {
                 if (this->explored[i][j]){
                     std::cout << this->board[i][j].printElement();
+                } else {
+                    std::cout << ' ';
                 }
             }
         }
@@ -91,15 +95,21 @@ void Game::update(){
                     this->player.x++;
                 }
             }
+            
             // updating explored zone
-            for (int dx = -3; dx < 4; dx++){
-                for (int dy = -3; dy < 4; dy++){
-                    if (0 <= this->player.x < this->boardWidth
-                        && 0 <= this->player.y < this->boardHeight){
-                        this->explored[y+dy][x+dx] = true;
+            int radius = 2;
+            for (int dx = -radius; dx <= radius; dx++){
+                for (int dy = -radius; dy <= radius; dy++){
+                    int x2, y2;
+                    x2 = this->player.x + dx;
+                    y2 = this->player.y + dy;
+                    if (0 <= x2 && x2 < this->boardWidth
+                        && 0 <= y2 && y2 < this->boardHeight){
+                        this->explored[y2][x2] = true;
                     }
                 }
             }
+            
             
         }
 
