@@ -15,6 +15,14 @@ Game::Game(){
     this->player.currentArmor = new Armor ("Casque", 10);
     this->player.currentWeapon = new Weapon ("Epee", 15);
     board = createMap(boardHeight,boardWidth );
+    monsters = new Monster**[boardHeight];
+    for (int i = 0; i < boardHeight; i++){
+        board[i] = new Monster*[boardWidth];
+        for (int j = 0; j < boardWidth; j++){
+            board[i][j] = nullptr;
+        }
+    }
+    monsters[3][3] = new Monster (10, 10 , 30, 30, 5);
 /*
     board = new TileElement*[this->boardHeight];
     for (int i = 0; i < boardHeight; i++){
@@ -45,7 +53,11 @@ void Game::draw(){
             // Sur la case du joueur on print @ et non le terrain
             if (i == this->player.y && j == this->player.x){
                 std::cout << '@';
-            } else {
+            } 
+            else if (monsters[i][j] != nullptr){
+                std::cout<<'M'<<endl;
+            }
+            else {
                 std::cout << this->board[i][j].printElement();
             }
         }
