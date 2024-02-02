@@ -8,5 +8,9 @@ int main(){
 
     game.draw();
 
+    while (true){
+        game.update();
+    }
+
     return 0;
 }

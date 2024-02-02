@@ -4,9 +4,11 @@
 #include "Game.hpp"
 #include "TileElement.hpp"
 #include "Entity.hpp"
+#include "keyboard.hpp"
 
 
 Game::Game(){
+    this->player = Player(40,20,0,0,0,0);
     this->boardHeight = 40;
     this->boardWidth = 80;
     board = new TileElement*[this->boardHeight];
@@ -26,7 +28,7 @@ Game::~Game(){
 }
 
 void Game::draw(){
-    // std::system("clear"); // nettoyage du terminal
+    std::system("clear"); // nettoyage du terminal
     // On print les elements un par un 
     for (int i = 0; i < this->boardHeight; i++){
         for (int j = 0; j < this->boardWidth; j++){
@@ -38,5 +40,29 @@ void Game::draw(){
             }
         }
         std::cout << std::endl;
+    }
+}
+
+void Game::update(){
+    draw();
+    char key;
+    if (keyEventBlocking()){
+        std::cin >> key;
+        if (key == 'z' || key == 'q' || key == 's' || key == 'd'){
+            cout << "moving hero" << endl;
+            if (key == 'z'){
+                this->player.y--;
+            }
+            else if (key == 's'){
+                this->player.y++;
+            }
+            else if (key == 'q'){
+                this->player.x--;
+            }
+            else if (key == 'd'){
+                this->player.x++;
+            }
+        }
+        draw();
     }
 }
